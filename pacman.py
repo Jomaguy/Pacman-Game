@@ -168,8 +168,7 @@ class Player(pygame.sprite.Sprite):
         prev_y=old_y+self.prev_y
 
         # Did this update cause us to hit a wall?
-        x_collide = pygame.sprite.spritecollide(self, walls, False)
-        if x_collide:
+        if x_collide := pygame.sprite.spritecollide(self, walls, False):
             # Whoops, hit a wall. Go back to the old position
             self.rect.left=old_x
             # self.rect.top=prev_y
@@ -183,8 +182,7 @@ class Player(pygame.sprite.Sprite):
             self.rect.top = new_y
 
             # Did this update cause us to hit a wall?
-            y_collide = pygame.sprite.spritecollide(self, walls, False)
-            if y_collide:
+            if y_collide := pygame.sprite.spritecollide(self, walls, False):
                 # Whoops, hit a wall. Go back to the old position
                 self.rect.top=old_y
                 # self.rect.left=prev_x
@@ -530,9 +528,8 @@ def startGame():
       if score == bll:
         doNext("Congratulations, you won!",145,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
 
-      monsta_hit_list = pygame.sprite.spritecollide(Pacman, monsta_list, False)
 
-      if monsta_hit_list:
+      if monsta_hit_list := pygame.sprite.spritecollide(Pacman, monsta_list, False):
         doNext("Game Over",235,all_sprites_list,block_list,monsta_list,pacman_collide,wall_list,gate)
 
       # ALL CODE TO DRAW SHOULD GO ABOVE THIS COMMENT
